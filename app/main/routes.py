@@ -11,6 +11,9 @@ from app.models import User, Post, Message, Notification
 from app.translate import translate
 from app.main import bp
 
+@bp.route('/test')
+def test():
+    return render_template('app-chat.html')
 
 @bp.before_app_request
 def before_request():
