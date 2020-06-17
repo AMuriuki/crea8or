@@ -6,18 +6,20 @@ from app.models import User
 
 
 class LoginForm(FlaskForm):
-    username = StringField(_l('Username'), validators=[DataRequired()])
+    email = StringField(_l('Email Address'), validators=[DataRequired(), Email()])
     password = PasswordField(_l('Password'), validators=[DataRequired()])
-    remember_me = BooleanField(_l('Remember Me'))
+    remember_me = BooleanField(_l('Keep me logged in'))
     submit = SubmitField(_l('Sign In'))
 
 
 class RegistrationForm(FlaskForm):
     username = StringField(_l('Username'), validators=[DataRequired()])
-    email = StringField(_l('Email'), validators=[DataRequired(), Email()])
+    fname = StringField(_l('First Name'), validators=[DataRequired()])
+    lname = StringField(_l('Last Name'), validators=[DataRequired()])
+    email = StringField(_l('Email Address'), validators=[DataRequired(), Email()])
     password = PasswordField(_l('Password'), validators=[DataRequired()])
     password2 = PasswordField(
-        _l('Repeat Password'), validators=[DataRequired(),
+        _l('Confirm Password'), validators=[DataRequired(),
                                            EqualTo('password')])
     submit = SubmitField(_l('Register'))
 

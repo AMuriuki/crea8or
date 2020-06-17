@@ -1,0 +1,645 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  @media only screen and (min-width: 1281px) {
+    .card-columns {
+      column-count: 4;
+    }
+  }
+
+  .container-fluid {
+    width: 100% !important;
+  }
+
+  .p-5 {
+    padding: 0rem !important;
+  }
+</style>
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static  " data-open="click"
+  data-menu="vertical-menu-modern" data-col="2-columns">
+  <!-- ***** Header Area Start ***** -->
+  <header class="header_area headroom">
+    <div class="container-fluid bg-color" style="width:100% !important;">
+      <div class="row align-items-center">
+        <!-- Menu Area Start -->
+        <div class="col-12">
+          <div class="menu_area">
+            <nav class="navbar navbar-expand-xl navbar-light px-1" style="background: unset;">
+              <!-- Logo -->
+              <a href="#home"><img src="../static/img/bg-img/logo_transparent_.png" class="img-fluid logo-width"
+                  alt="Brand Logo" /></a>
+              <a href="#home">
+                <h4 class="logo-font mt-2 ml-1">Creatives</h4>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar"
+                aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <!-- Menu Area -->
+              <div class="navbar-collapse collapse" id="ca-navbar">
+                <ul class="nav navbar-nav ml-auto" id="nav">
+                  <li class="nav-item"><a class="nav-link px-3" href="{{url_for('auth.login')}}">Sign In</a></li>
+                  <li class="nav-item buynow-btn">
+                    <a class="nav-link px-4" href="{{url_for('auth.register')}}">Sign Up</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- BEGIN: Content-->
+  <div class="app-content content"
+    style="margin-left: 0% !important; background-color: #f2f4f4 !important; min-height: calc(50% - 3.5rem);">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-body">
+        <!-- centered-slides swiper option-1 start -->
+        <section id="component-swiper-centered-slides">
+          <div class="card bg-transparent shadow-none">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="row" style="height: 80px; margin-bottom: 20px;">
+                  <div class="col-lg-12 text-center mb-5">
+                    <div class="section-heading">
+                      <h2 class="wow pulse">Explore galleries according to creative fields</h2>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-centered-slides swiper-container p-1">
+                  <div class="swiper-wrapper" style="right: 35%;">
+                    {% for gallery in galleries %}
+                    <a href="" class="swiper-slide rounded swiper-shadow"
+                      style="background-image: url('../static/img/scr-img/cards/light/{{gallery.image}}'); background-size: 100% 100%;">
+                      <div class="swiper-text pt-md-1 pt-sm-50" style="color: #fff; font-weight: bold;">{{gallery.title}}
+                      </div>
+                    </a>                    
+                    {% endfor %}
+                  </div>
+                  <!-- Add Arrows -->
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- centered-slides swiper option-1 ends -->
+
+      </div>
+    </div>
+  </div>
+  <!-- END: Content-->
+
+  <!-- ***** Wellcome Area Light Start ***** -->
+  <section class="bg-grey p-150" id="cards" style="padding-top: 0%;">
+    <div class="special_description_area">
+      <div class="container-fluid">
+        <div class="row" style="height: 80px; margin-bottom: 20px;">
+          <div class="col-lg-12 text-center mb-5">
+            <div class="section-heading">
+              <h2 class="wow pulse">Photography</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-columns p-5">
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/photography.jpg" alt="Apps Image" />
+              <span>Photography</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/Illustrations.jpg" alt="Apps Image" />
+              <span>Illustration</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/motion.gif" alt="Apps Image" />
+              <span>Motion Graphics</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/architecture.jpg" alt="Apps Image" />
+              <span>Architecture</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/product_design.jpg" alt="Apps Image" />
+              <span>Product Design</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/fashion.jpg" alt="Apps Image" />
+              <span>Fashion</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/advertisement.jpg" alt="Apps Image" />
+              <span>Advertising</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/finearts.jpg" alt="Apps Image" />
+              <span>Fine Arts</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/Woodart.jpg" alt="Apps Image" />
+              <span>Wood Art</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/branding.jpg" alt="Apps Image" />
+              <span>Branding</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/Mobile.jpg" alt="Apps Image" />
+              <span>Mobile App Design</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/typography.jpg" alt="Apps Image" />
+              <span>Typography</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/webdesign.png" alt="Apps Image" />
+              <span>Web Design</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/interiordesign.jpg" alt="Apps Image" />
+              <span>Interior Design</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/clayworks.jpg" alt="Apps Image" />
+              <span>Clay Works</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/africanpainting.jpg" alt="Apps Image" />
+              <span>African Painting</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/metalart.jpg" alt="Apps Image" />
+              <span>Metal Art</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/tshirtdesigns.jpg" alt="Apps Image" />
+              <span>T-Shirt Designs</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/vectors.png" alt="Apps Image" />
+              <span>Vectors</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ***** Wellcome Area Light End ***** -->
+
+  <!-- ***** Wellcome Area Dark Start ***** -->
+  <section class="bg-dark p-150" style="display: none;" id="cards-dark">
+    <div class="special_description_area">
+      <div class="container-fluid">
+        <div class="row" style="height: 80px; margin-bottom: 20px;">
+          <div class="col-lg-12 text-center mb-5">
+            <div class="section-heading">
+              <h2 class="wow pulse">Galleries by top creative fields</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-bottom: 20px;">
+          <div class="col">
+            <div class="text-center">
+              <button class="btn btn-light" id="btnLight">
+                <img class="mr-1" src="../static/img/scr-img/sun.png" alt="light mode" /> Light Mode
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-columns p-5">
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/photography.jpg" alt="Apps Image" />
+              <span>Photography</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/Illustrations.jpg" alt="Apps Image" />
+              <span>Illustration</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/motion.gif" alt="Apps Image" />
+              <span>Motion Graphics</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/architecture.jpg" alt="Apps Image" />
+              <span>Architecture</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/product_design.jpg" alt="Apps Image" />
+              <span>Product Design</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/fashion.jpg" alt="Apps Image" />
+              <span>Fashion</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/advertisement.jpg" alt="Apps Image" />
+              <span>Advertising</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/finearts.jpg" alt="Apps Image" />
+              <span>Fine Arts</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/Woodart.jpg" alt="Apps Image" />
+              <span>Wood Art</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/branding.jpg" alt="Apps Image" />
+              <span>Branding</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/Mobile.jpg" alt="Apps Image" />
+              <span>Mobile App Design</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/typography.jpg" alt="Apps Image" />
+              <span>Typography</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/webdesign.png" alt="Apps Image" />
+              <span>Web Design</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/interiordesign.jpg" alt="Apps Image" />
+              <span>Interior Design</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/clayworks.jpg" alt="Apps Image" />
+              <span>Clay Works</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/africanpainting.jpg" alt="Apps Image" />
+              <span>African Painting</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/metalart.jpg" alt="Apps Image" />
+              <span>Metal Art</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/tshirtdesigns.jpg" alt="Apps Image" />
+              <span>T-Shirt Designs</span>
+            </div>
+          </a>
+          <a href="">
+            <div class="card advanced-card wow fadeIn">
+              <img class="img-fluid" src="../static/img/scr-img/cards/light/vectors.png" alt="Apps Image" />
+              <span>Vectors</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ***** Wellcome Area Dark End ***** -->
+
+  <!-- ***** Applications ***** -->
+  <section class="bg-white p-150" id="applications" style="padding-top: 0%; background-color: #f2f4f4 !important;">
+    <div class="special_description_area">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="section-heading">
+              <h2 class="wow pulse">Best of Creatives</h2>
+            </div>            
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mt-4 text-center card-hover wow fadeIn mt-5">
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-todo.html"
+              target="_blank">HTML</a>
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1/app-todo" target="_blank">HTML +
+              Laravel</a>
+            <a href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-todo.html"
+              target="_blank"><img class="border-grey" src="../static/img/scr-img/cards/light/photography.jpg" width="800" height="489" alt="Apps Image" /></a>
+            <h5 class="mt-4 mb-0"><span class="ti-check"></span> Todo</h5>
+            <div class="btn-group mt-2" role="group" aria-label="Basic example"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mt-4 text-center card-hover wow fadeIn mt-5">
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-chat.html"
+              target="_blank">HTML</a>
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1/app-chat" target="_blank">HTML +
+              Laravel</a>
+            <a href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-chat.html"
+              target="_blank"><img class="border-grey" src="../static/img/scr-img/cards/light/Illustrations.jpg" width="800" height="489" alt="Apps Image" /></a>
+            <h5 class="mt-4 mb-0"><span class="ti-comment"></span> Chat</h5>
+            <div class="btn-group mt-2" role="group" aria-label="Basic example"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mt-4 text-center card-hover wow fadeIn mt-5">
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-kanban.html"
+              target="_blank">HTML</a>
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1/app-kanban" target="_blank">HTML +
+              Laravel</a>
+            <a href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-kanban.html"
+              target="_blank"><img class="border-grey" src="../static/img/scr-img/cards/light/motion.gif" width="800" height="489"
+                alt="Apps Image" /></a>
+            <h5 class="mt-4 mb-0"><span class="ti-layers"></span> App Kanban</h5>
+            <div class="btn-group mt-2" role="group" aria-label="Basic example"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mt-4 text-center card-hover wow fadeIn mt-5">
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-email.html"
+              target="_blank">HTML</a>
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1/app-email" target="_blank">HTML +
+              Laravel</a>
+            <a href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-email.html"
+              target="_blank"><img class="border-grey" src="../static/img/scr-img/cards/light/architecture.jpg" width="800" height="489" alt="Apps Image" /></a>
+            <h5 class="mt-4 mb-0"><span class="ti-email"></span> Email</h5>
+            <div class="btn-group mt-2" role="group" aria-label="Basic example"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mt-4 text-center card-hover wow fadeIn mt-5">
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-calendar.html"
+              target="_blank">HTML</a>
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1/app-calendar" target="_blank">HTML +
+              Laravel</a>
+            <a href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-calendar.html"
+              target="_blank"><img class="border-grey" src="../static/img/scr-img/cards/light/product_design.jpg" width="800" height="489"
+                alt="Apps Image" /></a>
+            <h5 class="mt-4 mb-0"><span class="ti-calendar"></span> Calendar</h5>
+            <div class="btn-group mt-2" role="group" aria-label="Basic example"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mt-4 text-center card-hover wow fadeIn mt-5">
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-invoice.html"
+              target="_blank">HTML</a>
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1/app-invoice-view" target="_blank">HTML
+              + Laravel</a>
+            <a href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-invoice.html"
+              target="_blank"><img class="border-grey" src="../static/img/scr-img/cards/light/fashion.jpg" width="800" height="489"
+                alt="Apps Image" /></a>
+            <h5 class="mt-4 mb-0"><span class="ti-receipt"></span> App Invoice</h5>
+            <div class="btn-group mt-2" role="group" aria-label="Basic example"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mt-4 text-center card-hover wow fadeIn mt-5">
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-file-manager.html"
+              target="_blank">HTML</a>
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1/app-file-manager" target="_blank">HTML
+              + Laravel</a>
+            <a href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-file-manager.html"
+              target="_blank"><img class="border-grey" src="../static/img/scr-img/cards/light/advertisement.jpg" width="800" height="489"
+                alt="Apps Image" /></a>
+            <h5 class="mt-4 mb-0"><span class="ti-folder"></span> File Manager</h5>
+            <div class="btn-group mt-2" role="group" aria-label="Basic example"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mt-4 text-center card-hover wow fadeIn mt-5">
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-file-manager.html"
+              target="_blank">HTML</a>
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1/app-file-manager" target="_blank">HTML
+              + Laravel</a>
+            <a href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-file-manager.html"
+              target="_blank"><img class="border-grey" src="../static/img/scr-img/cards/light/finearts.jpg" width="800" height="489"
+                alt="Apps Image" /></a>
+            <h5 class="mt-4 mb-0"><span class="ti-folder"></span> File Manager</h5>
+            <div class="btn-group mt-2" role="group" aria-label="Basic example"></div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12 mt-4 text-center card-hover wow fadeIn mt-5">
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-file-manager.html"
+              target="_blank">HTML</a>
+            <a class="btn btn-secondary mr-2 mb-3"
+              href="/demo/frest-bootstrap-laravel-admin-dashboard-template/demo-1/app-file-manager" target="_blank">HTML
+              + Laravel</a>
+            <a href="/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template/app-file-manager.html"
+              target="_blank"><img class="border-grey" src="../static/img/scr-img/cards/light/Woodart.jpg" width="800" height="489"
+                alt="Apps Image" /></a>
+            <h5 class="mt-4 mb-0"><span class="ti-folder"></span> File Manager</h5>
+            <div class="btn-group mt-2" role="group" aria-label="Basic example"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ***** Applications End ***** -->
+  
+
+  <!-- Start of Async Drift Code -->
+  <script>
+    "use strict";
+
+    !(function () {
+      var t = (window.driftt = window.drift = window.driftt || []);
+      if (!t.init) {
+        if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+        (t.invoked = !0),
+          (t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"]),
+          (t.factory = function (e) {
+            return function () {
+              var n = Array.prototype.slice.call(arguments);
+              return n.unshift(e), t.push(n), t;
+            };
+          }),
+          t.methods.forEach(function (e) {
+            t[e] = t.factory(e);
+          }),
+          (t.load = function (t) {
+            var e = 3e5,
+              n = Math.ceil(new Date() / e) * e,
+              o = document.createElement("script");
+            (o.type = "text/javascript"),
+              (o.async = !0),
+              (o.crossorigin = "anonymous"),
+              (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
+            var i = document.getElementsByTagName("script")[0];
+            i.parentNode.insertBefore(o, i);
+          });
+      }
+    })();
+    drift.SNIPPET_VERSION = "0.3.1";
+    drift.load("6ashbsefxhx7");
+
+  </script>
+  <!-- End of Async Drift Code -->
+  <!-- ***** App Screenshots Area End *****====== -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i["GoogleAnalyticsObject"] = r;
+      (i[r] =
+        i[r] ||
+        function () {
+          (i[r].q = i[r].q || []).push(arguments);
+        }),
+        (i[r].l = 1 * new Date());
+      (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m);
+    })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+
+    ga("create", "UA-96096445-4", "auto");
+    ga("send", "pageview");
+
+  </script>
+  <script>
+    $(document).ready(function () {
+      var year = new Date().getFullYear();
+      $(".year").text(year);
+      // Select all links with hashes
+      $('a[href*="#"]')
+        // Remove links that don't actually link to anything
+        .not('[href="#"]')
+        .not('[href="#0"]')
+        .click(function (event) {
+          // On-page links
+          if (
+            location.pathname.replace(/^\//, "") == this.pathname.replace(/^\//, "") &&
+            location.hostname == this.hostname
+          ) {
+            // Figure out element to scroll to
+            var target = $(this.hash);
+            target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
+            // Does a scroll target exist?
+            if (target.length) {
+              // Only prevent default if animation is actually gonna happen
+              event.preventDefault();
+              $("html, body").animate({
+                scrollTop: target.offset().top
+              },
+                1000,
+                function () {
+                  // Callback after animation
+                  // Must change focus!
+                  var $target = $(target);
+                  $target.focus();
+                  if ($target.is(":focus")) {
+                    // Checking if the target was focused
+                    return false;
+                  } else {
+                    $target.attr("tabindex", "-1"); // Adding tabindex for elements not focusable
+                    $target.focus(); // Set focus again
+                  }
+                }
+              );
+            }
+          }
+        });
+      // grab an element
+      var myElement = document.querySelector("header");
+      // construct an instance of Headroom, passing the element
+      var headroom = new Headroom(myElement);
+      // initialise
+      headroom.init();
+    });
+
+    $(document).ready(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+  </script>
+  <!-- End Headroom -->
+  <script>
+    $(document).ready(function () {
+      $(".navbar-nav>li>a").on("click", function () {
+        $(".navbar-collapse").collapse("hide");
+      });
+    });
+
+  </script>
+  <!-- Dark & Light Mode -->
+  <script>
+    $("#btnLight").on("click", function () {
+      $("#cards").show();
+      $("#cards-dark").hide();
+      $("#btnLight").hide();
+      $("#btnDark").show();
+    });
+    $("#btnDark").on("click", function () {
+      $("#cards-dark").show();
+      $("#cards").hide();
+      $("#btnDark").hide();
+      $("#btnLight").show();
+    });
+
+  </script>
+  {% endblock %}

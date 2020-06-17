@@ -1,3 +1,3 @@
-# Welcome to Microblog!
+# Welcome to creatives!
 
-This is an example application featured in my [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). See the tutorial for instructions on how to work with it.
+This is an example application featured in my video tutorial on YouTube [SpringBoard](https://youtube.com/springboard/Web-Development-with-Python-and-Flask). See the tutorial for instructions on how to work with it.

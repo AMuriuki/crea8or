@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern 2-columns  navbar-sticky footer-static  " data-open="click"
+  data-menu="vertical-menu-modern" data-col="2-columns">
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header_area headroom">
+    <div class="container-fluid bg-color" style="width:100% !important;">
+      <div class="row align-items-center">
+        <!-- Menu Area Start -->
+        <div class="col-12">
+          <div class="menu_area">
+            <nav class="navbar navbar-expand-xl navbar-light px-1">
+              <!-- Logo -->
+              <a href="#home"><img src="../static/img/bg-img/logo_transparent_.png" class="img-fluid logo-width"
+                  alt="Brand Logo" /></a>
+              <a href="#home">
+                <h4 class="logo-font mt-2 ml-1">Creatives</h4>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ca-navbar"
+                aria-controls="ca-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <!-- Menu Area -->
+              <div class="navbar-collapse collapse" id="ca-navbar">
+                <ul class="nav navbar-nav ml-auto" id="nav">
+                  <li class="nav-item"><a class="nav-link px-3" href="{{url_for('auth.login')}}">Sign In</a></li>
+                  <li class="nav-item buynow-btn">
+                    <a class="nav-link px-4" href="{{url_for('auth.register')}}">Sign Up</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- BEGIN: Content-->
+  <div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">      
+      <div class="content-body">
+        <!-- centered-slides swiper option-1 start -->
+        <section id="component-swiper-centered-slides">
+          <div class="card bg-transparent shadow-none">
+            <div class="card-header">
+              <h4 class="card-title">Centered Slides option-1</h4>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <div class="swiper-centered-slides swiper-container p-1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-google font-large-1"></i>
+                      <div class="swiper-text pt-md-1 pt-sm-50">Getting Started</div>
+                    </div>
+                    <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-facebook font-large-1"></i>
+                      <div class="swiper-text pt-md-1 pt-sm-50">Pricing & Plans</div>
+                    </div>
+                    <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-twitter font-large-1"></i>
+                      <div class="swiper-text pt-md-1 pt-sm-50">Sales Question</div>
+                    </div>
+                    <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-instagram font-large-1"></i>
+                      <div class="swiper-text pt-md-1 pt-sm-50">Usage Guides</div>
+                    </div>
+                    <div class="swiper-slide rounded swiper-shadow"> <i class="bx bxl-google font-large-1"></i>
+                      <div class="swiper-text pt-md-1 pt-sm-50">General Guide</div>
+                    </div>
+                  </div>
+                  <!-- Add Arrows -->
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- centered-slides swiper option-1 ends -->
+
+      </div>
+    </div>
+  </div>
+  <!-- END: Content-->
+  {% endblock %}

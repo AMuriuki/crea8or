@@ -7,13 +7,15 @@ from guess_language import guess_language
 from app import db
 from app.main.forms import EditProfileForm, EmptyForm, PostForm, SearchForm, \
     MessageForm
-from app.models import User, Post, Message, Notification
+from app.models import User, Post, Message, Notification, Gallery
 from app.translate import translate
 from app.main import bp
 
+
 @bp.route('/test')
 def test():
-    return render_template('app-chat.html')
+    return render_template('_index.html')
+
 
 @bp.before_app_request
 def before_request():
@@ -26,6 +28,12 @@ def before_request():
 
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index', methods=['GET', 'POST'])
+def landing_page():
+    galleries = Gallery.query.all()
+    return render_template('landing.html', title=_('Creatives | Discover the Best Designers & Creatives'), galleries=galleries)
+
+
+@bp.route('/home', methods=['GET', 'POST'])
 @login_required
 def index():
     form = PostForm()
@@ -39,14 +47,15 @@ def index():
         db.session.commit()
         flash(_('Your post is now live!'))
         return redirect(url_for('main.index'))
-    page = request.args.get('page', 1, type=int)
-    posts = current_user.followed_posts().paginate(
-        page, current_app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('main.index', page=posts.next_num) \
-        if posts.has_next else None
-    prev_url = url_for('main.index', page=posts.prev_num) \
-        if posts.has_prev else None
-    return render_template('index.html', title=_('Home'), form=form,
+    if current_user.is_authenticated:
+        page = request.args.get('page', 1, type=int)
+        posts = current_user.followed_posts().paginate(
+            page, current_app.config['POSTS_PER_PAGE'], False)
+        next_url = url_for('main.index', page=posts.next_num) \
+            if posts.has_next else None
+        prev_url = url_for('main.index', page=posts.prev_num) \
+            if posts.has_prev else None
+    return render_template('index.html', title=_('Creatives | Discover the Best Designers & Creatives'), form=form,
                            posts=posts.items, next_url=next_url,
                            prev_url=prev_url)
 

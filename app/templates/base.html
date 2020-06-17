@@ -1,171 +1,109 @@
-{% extends 'bootstrap/base.html' %}
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta name="description" content="Art projects featured by creative curators. Creatives is where artist gain inspiration, feedback, community, and jobs. It is your best resource to discover and connect with designers worldwide.">
+  <meta name="keywords"
+    content="online portfolio, online portfolio site, creative professional platform, creative network, creative community, creative talent">
+  <meta name="author" content="https://springboard.io">
+  <title>{% if title %}{{ title }}{% else %}{{ _('Welcome to Creatives') }}{% endif %}</title>
+  <link rel="apple-touch-icon" href="../static/app-assets/images/ico/apple-icon-120.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../static/img/bg-img/logo_transparent_.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
-{% block title %}
-    {% if title %}{{ title }} - Microblog{% else %}{{ _('Welcome to Microblog') }}{% endif %}
-{% endblock %}
+  <!-- BEGIN: Vendor CSS-->
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/vendors/css/vendors.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/vendors/css/extensions/swiper.min.css">
+  <!-- END: Vendor CSS-->
 
-{% block navbar %}
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ url_for('main.index') }}">Microblog</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('main.index') }}">{{ _('Home') }}</a></li>
-                    <li><a href="{{ url_for('main.explore') }}">{{ _('Explore') }}</a></li>
-                </ul>
-                {% if g.search_form %}
-                <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
-                    <div class="form-group">
-                        {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}
-                    </div>
-                </form>
-                {% endif %}
-                <ul class="nav navbar-nav navbar-right">
-                    {% if current_user.is_anonymous %}
-                    <li><a href="{{ url_for('auth.login') }}">{{ _('Login') }}</a></li>
-                    {% else %}
-                    <li>
-                        <a href="{{ url_for('main.messages') }}">{{ _('Messages') }}
-                            {% set new_messages = current_user.new_messages() %}
-                            <span id="message_count" class="badge"
-                                  style="visibility: {% if new_messages %}visible
-                                                     {% else %}hidden{% endif %};">
-                                {{ new_messages }}
-                            </span>
-                        </a>
-                    </li>
-                    <li><a href="{{ url_for('main.user', username=current_user.username) }}">{{ _('Profile') }}</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">{{ _('Logout') }}</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-{% endblock %}
+  <!-- BEGIN: Theme CSS-->
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/css/bootstrap-extended.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/css/colors.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/css/components.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/css/themes/dark-layout.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/css/themes/semi-dark-layout.min.css">
+  <!-- END: Theme CSS-->
 
+  <!-- BEGIN: Page CSS-->
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/css/core/menu/menu-types/vertical-menu.min.css">
+  <link rel="stylesheet" type="text/css" href="../static/app-assets/css/plugins/extensions/swiper.min.css">
+  <!-- END: Page CSS-->
+
+  <!-- BEGIN: Custom CSS-->
+  <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
+  <!-- END: Custom CSS-->
+
+  <!-- Favicon -->
+  <link rel="icon" href="../static/img/bg-img/logo_transparent_.png" />
+  <!-- Core Stylesheet -->
+  <link href="../static/style.css" rel="stylesheet" />
+  <!-- Responsive CSS -->
+  <link href="../static/css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../static/css/style.css" />
+  <!-- Resource style -->
+  <script src="../static/js/modernizr.js"></script>
+  <!-- Modernizr -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+</head>
+<!-- END: Head-->
 {% block content %}
-    <div class="container">
-        {% if current_user.is_authenticated %}
-        {% with tasks = current_user.get_tasks_in_progress() %}
-        {% if tasks %}
-            {% for task in tasks %}
-            <div class="alert alert-success" role="alert">
-                {{ task.description }}
-                <span id="{{ task.id }}-progress">{{ task.get_progress() }}</span>%
-            </div>
-            {% endfor %}
-        {% endif %}
-        {% endwith %}
-        {% endif %}
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-info" role="alert">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-        {% endwith %}
-
-        {# application content needs to be provided in the app_content block #}
-        {% block app_content %}{% endblock %}
-    </div>
 {% endblock %}
+<!-- BEGIN: Footer-->
+<footer class="footer footer-static footer-light" style="background-color: black; margin-left: 0%;">
+    <p class="clearfix mb-0"><span style="color: white;" class="float-left d-inline-block"><script>document.write(new Date().getFullYear())</script> &copy; Creatives</span><span style="color: white;"
+        class="float-right d-sm-inline-block d-none">Powered by:<a style="color: white;" href="https://springboard.io" target="_blank">Springboard - The Art of Code</a></span>
+      <button class="btn btn-primary btn-icon scroll-top" type="button"><i class="bx bx-up-arrow-alt"></i></button>
+    </p>
+  </footer>
+  <!-- END: Footer-->
 
-{% block scripts %}
-    {{ super() }}
-    {{ moment.include_moment() }}
-    {{ moment.lang(g.locale) }}
-    <script>
-        function translate(sourceElem, destElem, sourceLang, destLang) {
-            $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
-            $.post('/translate', {
-                text: $(sourceElem).text(),
-                source_language: sourceLang,
-                dest_language: destLang
-            }).done(function(response) {
-                $(destElem).text(response['text'])
-            }).fail(function() {
-                $(destElem).text("{{ _('Error: Could not contact server.') }}");
-            });
-        }
-        $(function () {
-            var timer = null;
-            var xhr = null;
-            $('.user_popup').hover(
-                function(event) {
-                    // mouse in event handler
-                    var elem = $(event.currentTarget);
-                    timer = setTimeout(function() {
-                        timer = null;
-                        xhr = $.ajax(
-                            '/user/' + elem.first().text().trim() + '/popup').done(
-                                function(data) {
-                                    xhr = null;
-                                    elem.popover({
-                                        trigger: 'manual',
-                                        html: true,
-                                        animation: false,
-                                        container: elem,
-                                        content: data
-                                    }).popover('show');
-                                    flask_moment_render_all();
-                                }
-                            );
-                    }, 1000);
-                },
-                function(event) {
-                    // mouse out event handler
-                    var elem = $(event.currentTarget);
-                    if (timer) {
-                        clearTimeout(timer);
-                        timer = null;
-                    }
-                    else if (xhr) {
-                        xhr.abort();
-                        xhr = null;
-                    }
-                    else {
-                        elem.popover('destroy');
-                    }
-                }
-            );
-        });
-        function set_message_count(n) {
-            $('#message_count').text(n);
-            $('#message_count').css('visibility', n ? 'visible' : 'hidden');
-        }
-        function set_task_progress(task_id, progress) {
-            $('#' + task_id + '-progress').text(progress);
-        }
-        {% if current_user.is_authenticated %}
-        $(function() {
-            var since = 0;
-            setInterval(function() {
-                $.ajax('{{ url_for('main.notifications') }}?since=' + since).done(
-                    function(notifications) {
-                        for (var i = 0; i < notifications.length; i++) {
-                            switch (notifications[i].name) {
-                                case 'unread_message_count':
-                                    set_message_count(notifications[i].data);
-                                    break;
-                                case 'task_progress':
-                                    set_task_progress(notifications[i].data.task_id,
-                                        notifications[i].data.progress);
-                                    break;
-                            }
-                            since = notifications[i].timestamp;
-                        }
-                    }
-                );
-            }, 10000);
-        });
-        {% endif %}
-    </script>
-{% endblock %}
+  <!-- Jquery-2.2.4 JS -->
+  <script src="../static/js/jquery-2.2.4.min.js"></script>
+  <!-- Headroom js -->
+  <script src="../static/js/headroom.js"></script>
+  <!-- Popper js -->
+  <script src="../static/js/popper.min.js"></script>
+  <!-- Bootstrap-4 Beta JS -->
+  <script src="../static/js/bootstrap.min.js"></script>
+  <!-- All Plugins JS -->
+  <script src="../static/js/plugins.js"></script>
+  <!-- Active JS -->
+  <script src="../static/js/active.js"></script>
+  <!-- Resource jQuery -->
+  <script src="../static/js/jquery.mobile.custom.min.js"></script>
+  <!-- Resource jQuery -->
+  <script src="../static/js/main.js"></script>
+  <!-- Headroom -->
+  
+  <!-- BEGIN: Vendor JS-->
+  <script src="../static/app-assets/vendors/js/vendors.min.js"></script>
+  <script src="../static/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.min.js"></script>
+  <script src="../static/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.min.js"></script>
+  <script src="../static/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
+  <!-- BEGIN Vendor JS-->
+
+  <!-- BEGIN: Page Vendor JS-->
+  <script src="../static/app-assets/vendors/js/extensions/swiper.min.js"></script>
+  <!-- END: Page Vendor JS-->
+
+  <!-- BEGIN: Theme JS-->
+  <script src="../static/app-assets/js/scripts/configs/vertical-menu-light.min.js"></script>
+  <script src="../static/app-assets/js/core/app-menu.min.js"></script>
+  <script src="../static/app-assets/js/core/app.min.js"></script>
+  <script src="../static/app-assets/js/scripts/components.min.js"></script>
+  <script src="../static/app-assets/js/scripts/footer.min.js"></script>
+  <script src="../static/app-assets/js/scripts/customizer.min.js"></script>
+  <!-- END: Theme JS-->
+
+  <!-- BEGIN: Page JS-->
+  <script src="../static/app-assets/js/scripts/extensions/swiper.min.js"></script>
+  <!-- END: Page JS-->
+
+</body>
+<!-- END: Body-->
+</html>
