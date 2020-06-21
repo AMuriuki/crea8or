@@ -23,3 +23,4 @@ class Config(object):
     REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
     POSTS_PER_PAGE = 25
     SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+    UPLOADED_PHOTOS_DEST = os.path.join(basedir, 'uploads') 

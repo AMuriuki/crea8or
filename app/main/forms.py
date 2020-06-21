@@ -4,6 +4,8 @@ from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Length
 from flask_babel import _, lazy_gettext as _l
 from app.models import User
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from app import photos
 
 
 class EditProfileForm(FlaskForm):
@@ -27,8 +29,8 @@ class EmptyForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-class PostForm(FlaskForm):
-    post = TextAreaField(_l('Say something'), validators=[DataRequired()])
+class PostStatusForm(FlaskForm):
+    post = TextAreaField(_l('Share something...'), validators=[DataRequired()])
     submit = SubmitField(_l('Submit'))
 
 

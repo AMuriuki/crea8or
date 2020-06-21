@@ -13,6 +13,7 @@ from elasticsearch import Elasticsearch
 from redis import Redis
 import rq
 from config import Config
+from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -23,6 +24,7 @@ mail = Mail()
 bootstrap = Bootstrap()
 moment = Moment()
 babel = Babel()
+photos = UploadSet('photos', IMAGES)
 
 
 def create_app(config_class=Config):
@@ -40,6 +42,8 @@ def create_app(config_class=Config):
         if app.config['ELASTICSEARCH_URL'] else None
     app.redis = Redis.from_url(app.config['REDIS_URL'])
     app.task_queue = rq.Queue('creatives-tasks', connection=app.redis)
+    configure_uploads(app, photos)
+    patch_request_class(app)  # set maximum file size, default is 16MB
 
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)

@@ -1,32 +1,107 @@
-    <table class="table table-hover">
-        <tr>
-            <td width="70px">
-                <a href="{{ url_for('main.user', username=post.author.username) }}">
-                    <img src="{{ post.author.avatar(70) }}" />
-                </a>
-            </td>
-            <td>
-                {% set user_link %}
-                    <span class="user_popup">
-                        <a href="{{ url_for('main.user', username=post.author.username) }}">
-                            {{ post.author.username }}
-                        </a>
-                    </span>
-                {% endset %}
-                {{ _('%(username)s said %(when)s',
-                    username=user_link, when=moment(post.timestamp).fromNow()) }}
-                <br>
-                <span id="post{{ post.id }}">{{ post.body }}</span>
-                {% if post.language and post.language != g.locale %}
-                <br><br>
-                <span id="translation{{ post.id }}">
-                    <a href="javascript:translate(
-                                '#post{{ post.id }}',
-                                '#translation{{ post.id }}',
-                                '{{ post.language }}',
-                                '{{ g.locale }}');">{{ _('Translate') }}</a>
-                </span>
-                {% endif %}
-            </td>
-        </tr>
-    </table>
+<style>
+    .card-header{
+        background-color: #ffffff;
+    }
+</style>
+<div class="card">
+    <div class="card-content">
+        <div class="card-header user-profile-header">
+            <div class="avatar mr-50 align-top">
+                <img src="{{ post.author.avatar(32) }}" alt="avtar image">                
+            </div>
+            <div class="d-inline-block mt-25">
+                <h6 class="mb-0 text-bold-500">{{post.author.fname}} {{post.author.lname}}</h6>
+                <p class="text-muted"><small>{{ moment(post.timestamp).fromNow() }}</small></p>
+            </div>            
+        </div>
+        <div class="card-body py-0">
+            <p>{{post.body}}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between pb-0">
+            <div class="d-flex align-items-center">
+                <a href="{{ url_for('main.like_action', post_id=post.id, action='like') }}" class="cursor-pointer bx bx-like user-profile-like font-medium-4"></a>
+                <p class="mb-0 ml-25">{{ post.likes.count() }}</p>
+                <a href="{{ url_for('main.like_action', post_id=post.id, action='unlike') }}" style="margin-left: 5%;" class="cursor-pointer bx bx-dislike user-profile-like font-medium-4"></a>
+                <p class="mb-0 ml-25">{{ post.unlikes.count() }}</p>
+                <!-- user profile likes avatar start -->
+                <div class="d-none d-sm-block">
+                    <ul class="list-unstyled users-list m-0 d-flex align-items-center ml-1">
+                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
+                            title="Lilian Nenez" class="avatar pull-up">
+                            <img src="{{ post.author.avatar(30) }}" alt="Avatar">
+                        </li>
+                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
+                            title="Alberto Glotzbach" class="avatar pull-up">
+                            <img src="{{ post.author.avatar(30) }}" alt="Avatar">
+                        </li>
+                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
+                            title="Alberto Glotzbach" class="avatar pull-up">
+                            <img src="{{ post.author.avatar(30) }}" alt="Avatar">
+                        </li>
+                        <li class="d-inline-block pl-50">
+                            <p class="text-muted mb-0 font-small-3">+10 more</p>
+                        </li>
+                    </ul>
+                </div>
+                <!-- user profile likes avatar ends -->
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="cursor-pointer bx bx-comment-dots font-medium-4"></i>
+                <span class="ml-25">45</span>
+                <i class="cursor-pointer bx bx-share-alt font-medium-4 ml-1"></i>
+                <span class="ml-25">1</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- user profile comments start -->
+    <div class="card-header user-profile-header pt-0">
+        <div class="avatar mr-50 align-top">
+            <img src="{{ post.author.avatar(32) }}" alt="avtar image">
+            <span class="avatar-status-away"></span>
+        </div>
+        <div class="d-inline-block mt-25">
+            <h6 class="mb-0 text-bold-500 font-small-3">{{post.author.fname}} {{post.author.lname}}</h6>
+            <p class="text-muted"><small>24 mins ago</small></p>
+        </div>        
+    </div>
+    <div class="card-body py-0">
+        <p>Easy & smart fuzzy search🕵🏻 functionality which enables users to search quickly.</p>
+    </div>
+    <div class="card-footer user-comment-footer pb-0">
+        <i class="cursor-pointer bx bx-heart user-profile-like font-medium-4 align-middle"></i>
+        <span class="ml-25">30</span>
+        <span class="ml-1">reply</span>
+    </div>
+    <hr>
+    <div class="card-header user-profile-header pt-0">
+        <div class="avatar mr-50 align-top">
+            <img src="{{ post.author.avatar(32) }}" alt="avtar image">            
+        </div>
+        <div class="d-inline-block mt-25">
+            <h6 class="mb-0 text-bold-500 font-small-3">{{post.author.fname}} {{post.author.lname}}</h6>
+            <p class="text-muted"><small>1 hours ago</small></p>
+        </div>        
+    </div>
+    <div class="card-body py-0">
+        <p>Unlimited color🖌 options allows you to set your application color as per your branding
+            🤪.</p>
+    </div>
+    <div class="card-footer user-comment-footer pb-0">
+        <i class="cursor-pointer bx bx-heart user-profile-like font-medium-4 align-middle"></i>
+        <span class="ml-25">80</span>
+        <span class="ml-1">reply</span>
+    </div>
+    <hr>
+    <div class="form-group row align-items-center px-1">
+        <div class="col-2 col-sm-1">
+            <div class="avatar">
+                <img src="{{ post.author.avatar(32) }}" alt="avtar image">                
+            </div>
+        </div>
+        <div class="col-sm-11 col-10">
+            <textarea class="form-control" id="user-comment-textarea" rows="1" placeholder="comment.."></textarea>
+        </div>
+    </div>
+    <!-- user profile comments ends -->
+</div>

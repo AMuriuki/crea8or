@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from flask_babel import _, get_locale
 from guess_language import guess_language
 from app import db
-from app.main.forms import EditProfileForm, EmptyForm, PostForm, SearchForm, \
+from app.main.forms import EditProfileForm, EmptyForm, PostStatusForm, SearchForm, \
     MessageForm
 from app.models import User, Post, Message, Notification, Gallery
 from app.translate import translate
@@ -36,7 +36,7 @@ def landing_page():
 @bp.route('/home', methods=['GET', 'POST'])
 @login_required
 def index():
-    form = PostForm()
+    form = PostStatusForm()
     if form.validate_on_submit():
         language = guess_language(form.post.data)
         if language == 'UNKNOWN' or len(language) > 5:
@@ -45,8 +45,8 @@ def index():
                     language=language)
         db.session.add(post)
         db.session.commit()
-        flash(_('Your post is now live!'))
-        return redirect(url_for('main.index'))
+        flash(_('Your status has been posted'))
+        return redirect(url_for('main.index'))    
     if current_user.is_authenticated:
         page = request.args.get('page', 1, type=int)
         posts = current_user.followed_posts().paginate(
@@ -55,6 +55,7 @@ def index():
             if posts.has_next else None
         prev_url = url_for('main.index', page=posts.prev_num) \
             if posts.has_prev else None
+        print (posts.items)
     return render_template('index.html', title=_('Creatives | Discover the Best Designers & Creatives'), form=form,
                            posts=posts.items, next_url=next_url,
                            prev_url=prev_url)
@@ -236,3 +237,16 @@ def notifications():
         'data': n.get_data(),
         'timestamp': n.timestamp
     } for n in notifications])
+
+
+@bp.route('/like/<int:post_id>/<action>')
+@login_required
+def like_action(post_id, action):
+    post = Post.query.filter_by(id=post_id).first_or_404()
+    if action == 'like':
+        current_user.like_post(post)
+        db.session.commit()
+    if action == 'unlike':
+        current_user.unlike_post(post)
+        db.session.commit()
+    return redirect(request.referrer)

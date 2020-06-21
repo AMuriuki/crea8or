@@ -115,6 +115,10 @@ class User(UserMixin, PaginatedAPIMixin, db.Model):
     notifications = db.relationship('Notification', backref='user',
                                     lazy='dynamic')
     tasks = db.relationship('Task', backref='user', lazy='dynamic')
+    liked = db.relationship(
+        'Like', foreign_keys='Like.user_id', backref='user', lazy='dynamic')
+    unliked = db.relationship(
+        'Unlike', foreign_keys='Unlike.user_id', backref='user', lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -236,6 +240,27 @@ class User(UserMixin, PaginatedAPIMixin, db.Model):
             return None
         return user
 
+    def like_post(self, post):
+        if self.has_unliked_post(post):
+            Unlike.query.filter_by(user_id=self.id, post_id=post.id).delete()
+            like = Like(user_id=self.id, post_id=post.id)
+            db.session.add(like)
+        elif not self.has_liked_post(post):
+            like = Like(user_id=self.id, post_id=post.id)
+            db.session.add(like)
+
+    def unlike_post(self, post):
+        if self.has_liked_post(post):
+            Like.query.filter_by(user_id=self.id, post_id=post.id).delete()
+            unlike = Unlike(user_id=self.id, post_id=post.id)
+            db.session.add(unlike)
+
+    def has_liked_post(self, post):
+        return Like.query.filter(Like.user_id == self.id, Like.post_id == post.id).count() > 0
+
+    def has_unliked_post(self, post):
+        return Unlike.query.filter(Unlike.user_id == self.id, Unlike.post_id == post.id).count() > 0
+
 
 @login.user_loader
 def load_user(id):
@@ -249,6 +274,8 @@ class Post(SearchableMixin, db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     language = db.Column(db.String(5))
+    likes = db.relationship('Like', backref='post', lazy='dynamic')
+    unlikes = db.relationship('Unlike', backref='post', lazy='dynamic')
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
@@ -259,7 +286,7 @@ class Gallery(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(140), index=True)
     image = db.Column(db.String(200))
-    
+
     def __repr__(self):
         return '<Gallery {}>'.format(self.title)
 
@@ -303,3 +330,15 @@ class Task(db.Model):
     def get_progress(self):
         job = self.get_rq_job()
         return job.meta.get('progress', 0) if job is not None else 100
+
+
+class Like(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+
+
+class Unlike(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
